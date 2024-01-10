@@ -18,26 +18,31 @@ f=open(fn,'w',encoding="utf-8")
 start = time.time()
 
 while True:
-  ttime=time.time()-start
-  if ttime<0.001:
-    ttime=0.0
-  line = ser.readline()
-  line2=line.strip().decode('utf-8')
-  line3=[val for val in line2.split(" ")]
-  f.write(line3[0]+","+line3[1]+","+line3[2]+"\n")
-  print(line3)
-  y1.pop(-1)
-  y1.insert(0,float(line3[0]))
-  y2.pop(-1)
-  y2.insert(0,float(line3[1]))
-  y3.pop(-1)
-  y3.insert(0,float(line3[2]))
-  plt.clf()
-  plt.ylim(-.5,1)
-  lin1,=plt.plot(x,y1,label="L1")
-  lin2,=plt.plot(x,y2,label="L2")
-  lin3,=plt.plot(x,y3,label="L3")
-  plt.legend(handles=[lin1,lin2,lin3])
-  plt.pause(0.1)
-
-
+  try:
+    ttime=time.time()-start
+    if ttime<0.001:
+      ttime=0.0
+    line = ser.readline()
+    line2=line.strip().decode('utf-8')
+    line3=[val for val in line2.split(" ")]
+    f.write(line3[0]+","+line3[1]+","+line3[2]+"\n")
+    print(line3)
+    y1.pop(-1)
+    y1.insert(0,float(line3[0]))
+    y2.pop(-1)
+    y2.insert(0,float(line3[1]))
+    y3.pop(-1)
+    y3.insert(0,float(line3[2]))
+    plt.clf()
+    plt.ylim(-.5,1)
+    lin1,=plt.plot(x,y1,label="L1")
+    lin2,=plt.plot(x,y2,label="L2")
+    lin3,=plt.plot(x,y3,label="L3")
+    plt.legend(handles=[lin1,lin2,lin3])
+    plt.pause(0.1)
+  except KeyboardInterrupt:
+    print ('exiting')
+    ser.close()
+    f.close()
+    break
+exit()
