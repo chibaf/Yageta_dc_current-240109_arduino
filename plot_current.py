@@ -22,6 +22,6 @@ while True:
   if ttime<0.001:
     ttime=0.0
   line = ser.readline()
-#  line2=float(line.strip().decode('utf-8'))
-#  line = [str(val) for val in line2.split(" ")]
-  print(line)
+  line2=line.strip().decode('utf-8')
+  line3=[float(val) for val in line2.split(" ")]
+  print(line3)
