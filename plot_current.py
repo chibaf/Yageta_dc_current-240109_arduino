@@ -22,10 +22,13 @@ while True:
     ttime=time.time()-start
     if ttime<0.001:
       ttime=0.0
+    st=time.strftime("%Y %b %d %H:%M:%S", time.localtime())
+    ss=str(time.time()-int(time.time()))
+    rttime=round(ttime,2)
     line = ser.readline()
     line2=line.strip().decode('utf-8')
     line3=[val for val in line2.split(" ")]
-    f.write(line3[0]+","+line3[1]+","+line3[2]+"\n")
+    f.write(st+ss[1:5]+","+str(rttime)+","+line3[0]+","+line3[1]+","+line3[2]+"\n")
     print(line3)
     y1.pop(-1)
     y1.insert(0,float(line3[0]))
