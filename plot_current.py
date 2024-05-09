@@ -37,7 +37,7 @@ while True:
     y3.pop(-1)
     y3.insert(0,float(line3[2]))
     plt.clf()
-    plt.ylim(-.5,1)
+    plt.ylim(-.5,3)
     lin1,=plt.plot(x,y1,label="L1")
     lin2,=plt.plot(x,y2,label="L2")
     lin3,=plt.plot(x,y3,label="L3")
